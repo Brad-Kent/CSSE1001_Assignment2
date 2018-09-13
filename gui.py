@@ -5,9 +5,9 @@ UNO++ GUI Support Code
 
 import tkinter as tk
 from tkinter import messagebox
-
 from a2 import HumanPlayer, ComputerPlayer, Deck
 from a2 import SkipCard, ReverseCard, Pickup2Card, Pickup4Card
+
 from a2_support import FULL_DECK, build_deck, UnoGame, generate_name
 
 __author__ = "Brae Webb"

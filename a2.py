@@ -7,10 +7,9 @@ Semester 2, 2018
 
 import random
 
-__author__ = "Your name & student number here"
+__author__ = "Bradley Kent 45355194"
 
 # Write your classes here
-
 
 def main():
     print("Please run gui.py instead")
