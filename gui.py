@@ -162,7 +162,8 @@ class IconCardView(CardView):
             if self._image_view is None:
                 # draw an image based on the card's class
                 image = CARD_ICONS.get(card.__class__, "skip")
-                self._image_view = self.draw_image(f"images/{image}.png")
+                #self._image_view = self.draw_image(f"images/{image}.png")
+                self._image_view = self.draw_text(image, 'black')
             else:
                 # show the image
                 self._canvas.itemconfig(self._image_view, state="normal")
