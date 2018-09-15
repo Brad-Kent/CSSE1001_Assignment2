@@ -8,15 +8,16 @@ Semester 2, 2018
 __author__ = "Bradley Kent 45355194"
 from enum import Enum
 from random import random
+
 # Write your classes here
-index = 1
 
 
-class Deck:
+class Deck:# TODO: Testing Ready
+
     def __init__(self, starting_cards: list=None):
         if starting_cards is None:
             self._cards = []
-        else:
+        else:  # Probs don't need the else
             self._cards: list = starting_cards
 
     def get_cards(self) -> list:
@@ -26,12 +27,12 @@ class Deck:
         return len(self._cards)
 
     def shuffle(self):
-        #Todo: Shuffle
+        # Todo: Shuffle
         return self._cards
 
     def pick(self, amount: int=1):
-        # Todo: not sure if i need to check the amount
-        if len(self._cards) < amount:
+        # Done_Todo: not sure if i need to check the amount
+        if amount < 1 or len(self._cards) < amount:
             return None
         else:
             cards = self._cards[-amount:]
@@ -49,8 +50,8 @@ class Deck:
     def top(self):
         if len(self._cards) < 1:
             return None
-        else:
-            return self._cards[-1]
+        # Todo: Not sure if i should be returning a pointer/ ref :/
+        return self._cards[-1]
 
 
 class Player:
