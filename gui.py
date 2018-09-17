@@ -24,7 +24,7 @@ CARD_BACK_FOREGROUND = "red"
 CARD_BACK_TEXT_COLOUR = "yellow"
 CARD_BACK_TEXT = "UNO++"
 
-AI_DELAY = 2000
+AI_DELAY = 20
 
 
 class CardView:
@@ -569,9 +569,10 @@ def main():
     root.title("Uno++")
 
     # build a list of players for the game
-    players = [HumanPlayer("Ravi"), HumanPlayer(generate_name()),
-               ComputerPlayer(generate_name())]
+    #players = [HumanPlayer("Ravi"), HumanPlayer(generate_name()),
+      #         ComputerPlayer(generate_name())]
 
+    players = [ComputerPlayer(generate_name()),ComputerPlayer(generate_name()),ComputerPlayer(generate_name()),ComputerPlayer(generate_name()), ComputerPlayer(generate_name()),ComputerPlayer(generate_name()),ComputerPlayer(generate_name()),ComputerPlayer(generate_name()), ComputerPlayer(generate_name())]
     # build a pickup pile
     pickup_pile = Deck(build_deck(FULL_DECK))
     pickup_pile.shuffle()

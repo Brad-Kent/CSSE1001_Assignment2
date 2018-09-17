@@ -9,7 +9,7 @@ __author__ = "Bradley Kent 45355194"
 
 from enum import Enum
 from random import random
-
+from typing import Union
 # Write your classes here
 
 
@@ -57,8 +57,17 @@ class ComputerPlayer(Player):
     def is_playable(self):
         return False
 
-    def pick_card(self, putdown_pile: 'Deck') -> 'Card':
-        return putdown_pile.pick()  # some how i have to pick a card
+    def pick_card(self, putdown_pile: 'Deck') -> Union['Card', None]:
+        played_card: Union['Card', None] = putdown_pile.top()
+
+        index = 0
+        for card in self._deck.get_cards():
+            if card.matches(played_card):
+                del self._deck.get_cards()[index]
+                return card
+            index += 1
+
+        return None
 
 
 class Deck:  # TODO: Testing Ready
@@ -81,15 +90,18 @@ class Deck:  # TODO: Testing Ready
 
     def pick(self, amount: int=1):
         # Done_Todo: not sure if i need to check the amount
+
         if amount < 1 or len(self._cards) < amount:
             #raise ValueError
-            return None
-        else:
-            cards = self._cards[-amount:]
-            for _ in cards:
-                del self._cards[-amount]
-                amount -= 1
-            return cards
+            #return None
+            print("No Cards")
+            #return None
+
+        cards = self._cards[-amount:]
+        for _ in cards:
+            del self._cards[-amount]
+            amount -= 1
+        return cards
 
     def add_card(self, card: 'Card'):
         self._cards.append(card)
@@ -194,7 +206,7 @@ class Pickup2Card(Card):
         return 2
 
     def play(self, player: Player, game):
-        pickup_cards = game.pickup_pile.pick(2)
+        pickup_cards = game.pickup_pile.pick(self.get_pickup_amount())
         game.next_player().get_deck().add_cards(pickup_cards)
 
     def matches(self, card: 'Card'):
@@ -212,7 +224,7 @@ class Pickup4Card(Card):
         return 4
 
     def play(self, player: Player, game):
-        pickup_cards = game.pickup_pile.pick(2)
+        pickup_cards = game.pickup_pile.pick(self.get_pickup_amount())
         game.next_player().get_deck().add_cards(pickup_cards)
 
     def matches(self, card: 'Card'):

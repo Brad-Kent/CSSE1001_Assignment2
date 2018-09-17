@@ -200,14 +200,17 @@ class UnoGame:
         Parameters:
             player (Player): The player whose turn it is.
         """
+        #print("Player:", player.get_name())
         card = player.pick_card(self.putdown_pile)
+        #print("Card:", card)
 
         if card is None:
             player.get_deck().add_cards(self.pickup_pile.pick())
+            print("None")
             return
 
         x = self.putdown_pile.top()
-        print("Type:", type(x))
+        #print("Type:", type(x), "::", self.putdown_pile, ":", x)
         if card.matches(x):
             self.select_card(player, card)
 
