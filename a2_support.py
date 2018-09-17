@@ -206,7 +206,9 @@ class UnoGame:
             player.get_deck().add_cards(self.pickup_pile.pick())
             return
 
-        if card.matches(self.putdown_pile.top()):
+        x = self.putdown_pile.top()
+        print("Type:", type(x))
+        if card.matches(x):
             self.select_card(player, card)
 
     def take_turns(self):
