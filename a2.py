@@ -74,11 +74,12 @@ class Deck:  # TODO: Testing Ready
 
     def __init__(self, starting_cards: list=None):
         if starting_cards is None:
-            self._cards: list = []
-        else:  # Probs don't need the else
-            self._cards: list = starting_cards
+            starting_cards= []
+
+        self._cards: list = starting_cards
 
     def get_cards(self) -> list:
+        """ HHH lskjfasdf"""
         return self._cards
 
     def get_amount(self) -> int:
@@ -86,18 +87,17 @@ class Deck:  # TODO: Testing Ready
 
     def shuffle(self):
         # Todo: Shuffle w/ Random
+
+        for card in self._cards:
+            rand = random.randint(0, len(self._cards) - 1)
+            print(rand)
         return self._cards
 
     def pick(self, amount: int=1):
         # Done_Todo: not sure if i need to check the amount
 
-        if amount < 1 or len(self._cards) < amount:
-            #raise ValueError
-            #return None
-            print("No Cards")
-            #return None
-
         cards = self._cards[-amount:]
+        #print("Cards:", cards, "::", self._cards)
         for _ in cards:
             del self._cards[-amount]
             amount -= 1
@@ -140,11 +140,11 @@ class Card:
     def set_number(self, number: int):
         self._number = number
 
-    def set_color(self, color: str):
+    def set_colour(self, color: str):
         self._color = color
 
     def get_pickup_amount(self) -> int:
-        return 1
+        return 0
 
     def matches(self, card: 'Card') -> bool:
         # Todo: This could be a single bool
@@ -189,6 +189,7 @@ class ReverseCard(Card):
     def play(self, player: Player, game):
         game.reverse()
 
+
     def matches(self, card: 'Card') -> bool:
         return self._color == card.get_colour()
 
@@ -207,7 +208,13 @@ class Pickup2Card(Card):
 
     def play(self, player: Player, game):
         pickup_cards = game.pickup_pile.pick(self.get_pickup_amount())
-        game.next_player().get_deck().add_cards(pickup_cards)
+        print("Current Player:", game.current_player().get_name())
+
+        x = game.get_turns().peak()#.next_player()
+        print("next Player1:", x.get_name())
+        x.get_deck().add_cards(pickup_cards)
+
+        print("Current Player:", game.current_player().get_name())#game.next_player().get_name())
 
     def matches(self, card: 'Card'):
         return self._color == card.get_colour()
@@ -225,7 +232,7 @@ class Pickup4Card(Card):
 
     def play(self, player: Player, game):
         pickup_cards = game.pickup_pile.pick(self.get_pickup_amount())
-        game.next_player().get_deck().add_cards(pickup_cards)
+        game.get_turns().peak().get_deck().add_cards(pickup_cards)
 
     def matches(self, card: 'Card'):
         return True

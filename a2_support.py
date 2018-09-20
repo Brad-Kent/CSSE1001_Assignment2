@@ -206,7 +206,7 @@ class UnoGame:
 
         if card is None:
             player.get_deck().add_cards(self.pickup_pile.pick())
-            print("None")
+            #print("None")
             return
 
         x = self.putdown_pile.top()

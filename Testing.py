@@ -5,9 +5,9 @@ import a2_support
 anna = ComputerPlayer("Anna Truffet")
 players = [anna, HumanPlayer("Henry O'Brien"),ComputerPlayer("Josh Arnold")]
 
-#deck = Deck([Card(1, "red"), Card(2, "blue"), Card(3, "red"), Card(4, "green")])
+deck = Deck([Card(1, "red"), Card(2, "blue"), Card(3, "red"), Card(4, "green")])
 
-#game = a2_support.UnoGame(deck, players)
+game = a2_support.UnoGame(deck, players)
 
 
 def test_reverse_card():
@@ -74,10 +74,10 @@ def test_deck():
     print("New Deck", deck.get_cards()) #[SkipCard(0, green), Card(12, red), Pickup2Card(0, red),ReverseCard(0, blue)]
 
 
-#test_reverse_card()
+test_reverse_card()
 #test_skip_card
 #test_pickup2()
-test_deck()
+#test_deck()
 
 
 
